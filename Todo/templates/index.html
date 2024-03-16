@@ -1,3 +1,12 @@
-{% load static %}
-<img style="width:80px; height:80px;" src="{% static 'images/test.jpg' %}" alt="">
-<h1>Test Test</h1>
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %}
+
+<div class="flex justify-between items-center bg-white rounded p-4">
+    <form action="" class="mb-0 px-4 flex items-center justify-between">
+        <input class="h-8 border rounded focus:outline-none py-3 px-3 text-gray-700  mr-2" type="text">
+      <button class="border-none bg-green-700 px-4 py-2 rounded" type="submit"><img src="{% static 'icons/add.png' %}" alt="Add Icon" srcset=""></button>
+    </form>
+</div>
+
+{% endblock %}
