@@ -6,13 +6,16 @@
     <form action="" method="POST" class="mb-0 px-4 flex items-center justify-between w-full">
         {% csrf_token %}
         {{ form }}
-      <button class="border-none bg-green-700 px-4 py-2 rounded hover:bg-green-500" type="submit"><img src="{% static 'icons/add.png' %}" alt="Add Icon" srcset=""></button>
+      <button class="border-none bg-green-700 px-4 py-2 rounded hover:bg-green-500 ml-2" type="submit"><img src="{% static 'icons/add.png' %}" alt="Add Icon" srcset=""></button>
     </form>
 </div>
 
 {% for task in tasks %}
 <div class="flex justify-between bg-white rounded p-4 mb-2">
-    <a href="{% url 'completed' task.id%}"><input type="checkbox" name="" id="" class="border rounded w-6 h-6 mr-2"></a>
+    <form method="post" action="{% url 'completed' task.id %}">
+        {% csrf_token %}
+        <input type="checkbox" name="done" id="done{{ task.id }}" class="border rounded w-6 h-6 mr-2" onchange="this.form.submit()" {% if task.done %} checked {% endif %}>
+    </form>
     <span class="text-lg font-medium mr-4">{{task.task}}</span>
     <div class="flex justify-center">
         <a class="mr-2" href=""><img class="w-6 h-6" src="{% static 'icons/edit.png' %}" alt="Edit Icon"></a>
@@ -20,19 +23,38 @@
     </div>
 </div>
 {% endfor %}
+
+{% if tasks_done %}
 <div class="mt-4 mb-4 flex justify-center">
     <hr class="h-1 bg-black border-0">
-        <span>Completed</span>
+        <span class="font-bold text-lg">Completed</span>
     <hr>
 </div>
+
+{% for task_done in tasks_done %}
 <div class="flex justify-between bg-white rounded p-4 mb-2">
-    <input type="checkbox" name="" id="" class="border rounded w-6 h-6 mr-2">
-    <span class="text-lg font-medium mr-2">My First Todo and it is a bit longer text and see what it do.</span>
+    <form method="post" action="{% url 'completed' task_done.id %}">
+        {% csrf_token %}
+        <input type="checkbox" name="done" id="done{{ task_done.id }}" class="border rounded w-6 h-6 mr-2" onchange="this.form.submit()" {% if task_done.done %} checked {% endif %}>
+    </form>
+    <span class="text-lg font-medium mr-2">{{ task_done.task }}</span>
     <div class="flex justify-center">
         <a class="mr-2" href=""><img class="w-6 h-6" src="{% static 'icons/edit.png' %}" alt="Edit Icon"></a>
-        <a href=""><img class="w-6 h-6" src="{% static 'icons/delete.png' %}" alt="Delete Icon"></a>
+        <a href="{% url 'delete-task' task_done.id %}"><img class="w-6 h-6" src="{% static 'icons/delete.png' %}" alt="Delete Icon"></a>
     </div>
 </div>
-
+{% endfor %}
+{% else %}
+<div class="mt-4 mb-4 flex justify-center">
+    <hr class="h-1 bg-black border-0">
+        <span class="font-bold text-lg">Completed</span>
+    <hr>
+</div>
+<div class="mt-4 mb-4 flex justify-center">
+    <hr class="h-1 bg-black border-0">
+        <span class="font-light ">You don't have completed tasks!</span>
+    <hr>
+</div>
+{% endif %}
 
 {% endblock %}
