@@ -25,6 +25,18 @@ def completed(request, task_id):
     task.save()
     return redirect('home')
 
+def edit_task(request, task_id):
+    task = Task.objects.get(id=task_id)
+    form = TaskForm()
+    if request.method == "POST":
+        form = TaskForm(request.POST, instance=task)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = TaskForm(instance=task)
+    return render(request, 'edit_form.html', {"form": form})
+
 def delete_task(request, task_id):
     task = Task.objects.get(id=task_id)
     task.delete()
