@@ -12,7 +12,7 @@
 
 {% for task in tasks %}
 <div class="flex justify-between bg-white rounded p-4 mb-2">
-    <form method="post" action="{% url 'completed' task.id %}">
+    <form method="post" action="{% url 'completed' task.id %}" class="mb-0">
         {% csrf_token %}
         <input type="checkbox" name="done" id="done{{ task.id }}" class="border rounded w-6 h-6 mr-2" onchange="this.form.submit()" {% if task.done %} checked {% endif %}>
     </form>
@@ -33,7 +33,7 @@
 
 {% for task_done in tasks_done %}
 <div class="flex justify-between bg-white rounded p-4 mb-2">
-    <form method="post" action="{% url 'completed' task_done.id %}">
+    <form method="post" action="{% url 'completed' task_done.id %}" class="mb-0">
         {% csrf_token %}
         <input type="checkbox" name="done" id="done{{ task_done.id }}" class="border rounded w-6 h-6 mr-2" onchange="this.form.submit()" {% if task_done.done %} checked {% endif %}>
     </form>
