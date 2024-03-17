@@ -2,7 +2,7 @@
 {% load static %} 
 {% block content %}
 
-<div class="flex justify-between items-center bg-white rounded p-4 mb-4">
+<div class="flex justify-between items-center bg-white rounded p-4 mb-4 w-96">
     <form action="" method="POST" class="mb-0 px-4 flex items-center justify-between w-full">
         {% csrf_token %}
         {{ form }}
@@ -11,14 +11,14 @@
 </div>
 
 {% for task in tasks %}
-<div class="flex justify-between bg-white rounded p-4 mb-2">
+<div class="flex justify-between bg-white rounded p-4 mb-2 w-96">
     <form method="post" action="{% url 'completed' task.id %}" class="mb-0">
         {% csrf_token %}
-        <input type="checkbox" name="done" id="done{{ task.id }}" class="border rounded w-6 h-6 mr-2" onchange="this.form.submit()" {% if task.done %} checked {% endif %}>
+        <input type="checkbox" name="done" id="done{{ task.id }}" class="border rounded w-6 h-6 mr-4" onchange="this.form.submit()" {% if task.done %} checked {% endif %}>
     </form>
-    <span class="text-lg font-medium mr-4">{{task.task}}</span>
+    <span class="text-lg font-medium mr-4 flex-1">{{task.task}}</span>
     <div class="flex justify-center">
-        <a class="mr-2" href=""><img class="w-6 h-6" src="{% static 'icons/edit.png' %}" alt="Edit Icon"></a>
+        <a class="mr-2" href="{% url 'edit-task' task.id %}"><img class="w-6 h-6" src="{% static 'icons/edit.png' %}" alt="Edit Icon"></a>
         <a href="{% url 'delete-task' task.id %}"><img class="w-6 h-6" src="{% static 'icons/delete.png' %}" alt="Delete Icon"></a>
     </div>
 </div>
@@ -32,14 +32,14 @@
 </div>
 
 {% for task_done in tasks_done %}
-<div class="flex justify-between bg-white rounded p-4 mb-2">
+<div class="flex justify-between bg-white rounded p-4 mb-2 w-96">
     <form method="post" action="{% url 'completed' task_done.id %}" class="mb-0">
         {% csrf_token %}
         <input type="checkbox" name="done" id="done{{ task_done.id }}" class="border rounded w-6 h-6 mr-2" onchange="this.form.submit()" {% if task_done.done %} checked {% endif %}>
     </form>
-    <span class="text-lg font-medium mr-2">{{ task_done.task }}</span>
+    <span class="text-lg font-medium mr-2 flex-1">{{ task_done.task }}</span>
     <div class="flex justify-center">
-        <a class="mr-2" href=""><img class="w-6 h-6" src="{% static 'icons/edit.png' %}" alt="Edit Icon"></a>
+        <a class="mr-2" href="{% url 'edit-task' task_done.id %}"><img class="w-6 h-6" src="{% static 'icons/edit.png' %}" alt="Edit Icon"></a>
         <a href="{% url 'delete-task' task_done.id %}"><img class="w-6 h-6" src="{% static 'icons/delete.png' %}" alt="Delete Icon"></a>
     </div>
 </div>
@@ -56,5 +56,6 @@
     <hr>
 </div>
 {% endif %}
+
 
 {% endblock %}
