@@ -2,11 +2,37 @@
 {% load static %} 
 {% block content %}
 
-<div class="flex justify-between items-center bg-white rounded p-4">
-    <form action="" class="mb-0 px-4 flex items-center justify-between">
-        <input class="h-8 border rounded focus:outline-none py-3 px-3 text-gray-700  mr-2" type="text">
-      <button class="border-none bg-green-700 px-4 py-2 rounded" type="submit"><img src="{% static 'icons/add.png' %}" alt="Add Icon" srcset=""></button>
+<div class="flex justify-between items-center bg-white rounded p-4 mb-4">
+    <form action="" method="POST" class="mb-0 px-4 flex items-center justify-between w-full">
+        {% csrf_token %}
+        {{ form }}
+      <button class="border-none bg-green-700 px-4 py-2 rounded hover:bg-green-500" type="submit"><img src="{% static 'icons/add.png' %}" alt="Add Icon" srcset=""></button>
     </form>
 </div>
+
+{% for task in tasks %}
+<div class="flex justify-between bg-white rounded p-4 mb-2">
+    <a href="{% url 'completed' task.id%}"><input type="checkbox" name="" id="" class="border rounded w-6 h-6 mr-2"></a>
+    <span class="text-lg font-medium mr-4">{{task.task}}</span>
+    <div class="flex justify-center">
+        <a class="mr-2" href=""><img class="w-6 h-6" src="{% static 'icons/edit.png' %}" alt="Edit Icon"></a>
+        <a href="{% url 'delete-task' task.id %}"><img class="w-6 h-6" src="{% static 'icons/delete.png' %}" alt="Delete Icon"></a>
+    </div>
+</div>
+{% endfor %}
+<div class="mt-4 mb-4 flex justify-center">
+    <hr class="h-1 bg-black border-0">
+        <span>Completed</span>
+    <hr>
+</div>
+<div class="flex justify-between bg-white rounded p-4 mb-2">
+    <input type="checkbox" name="" id="" class="border rounded w-6 h-6 mr-2">
+    <span class="text-lg font-medium mr-2">My First Todo and it is a bit longer text and see what it do.</span>
+    <div class="flex justify-center">
+        <a class="mr-2" href=""><img class="w-6 h-6" src="{% static 'icons/edit.png' %}" alt="Edit Icon"></a>
+        <a href=""><img class="w-6 h-6" src="{% static 'icons/delete.png' %}" alt="Delete Icon"></a>
+    </div>
+</div>
+
 
 {% endblock %}
