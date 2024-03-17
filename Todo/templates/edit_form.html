@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="flex justify-start bg-none w-96 pr-4 py-4 px-0 mb-4">
+    <a class="flex justify-center items-center" href="{% url 'home' %}"><img class="h-7 w-7" src="{% static 'icons/back.png' %}" alt="Back Icon">
+        <span class="ml-2 font-medium text-blue-500">go back home</span>
+    </a>
+</div>
+<div class="flex justify-between items-center bg-white rounded p-4 mb-4 w-96">
+    <form action="" method="POST" class="mb-0 px-4 flex items-center justify-between w-full">
+        {% csrf_token %}
+        {{ form }}
+      <button class="border-none bg-green-700 px-4 py-2 rounded hover:bg-green-500 ml-2" type="submit"><img src="{% static 'icons/edit.png' %}" alt="Add Icon" srcset=""></button>
+    </form>
+</div>
+
+{% endblock %}
