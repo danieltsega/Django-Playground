@@ -1,0 +1,25 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="flex flex-col items-center bg-slate-900 py-8">
+    <div class="flex justify-between mb-6 bg-white rounded w-2/4 items-center p-4 border-none">
+        <a href="{% url 'home' %}">
+            <div class="flex justify-between">
+                <img class="w-8 h-8 mr-2" src="{% static 'icons/logo.png' %}" alt="Logo" />
+                <span class="font-bold text-lg text-center ml-1">M Y - N O T E S</span>
+            </div>
+        </a>
+        <div class="">
+            <a href="" class="">
+                <img class="w-6 h-6" src="{% static 'icons/add.png' %}" alt="Add Icon">
+            </a>
+        </div>
+    </div>
+    {% block content %} {% endblock %}
+  </body>
+</html>
