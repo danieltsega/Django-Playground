@@ -398,3 +398,5 @@ FodyWeavers.xsd
 *.sln.iml
 /Todo/env
 /Todo/tailwind.config.js
+/Notes-App/env
+/Notes-App/tailwind.config.js
