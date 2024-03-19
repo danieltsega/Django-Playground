@@ -23,7 +23,9 @@
             </div>
             <div class="bg-gray-400 w-full h-px mt-2 mb-4"></div>
             <div>
-                <span>{{ note.description }}</span>
+                <a href="{% url 'detail-note' note.pk %}">
+                    <span>{{ note.description }}</span>
+                </a>
             </div>
         </div>
         {% if forloop.counter|divisibleby:2 %} <!-- Adjusted line -->
