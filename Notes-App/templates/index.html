@@ -1,4 +1,29 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+    <div class="w-full flex flex-wrap justify-center"> <!-- Adjusted line -->
+        {% for note in object_list %}
+        <div class="flex flex-col items-start bg-white rounded border-none w-1/2 p-4 m-2"> <!-- Adjusted line -->
+            <div class="flex justify-between items-center w-full">
+                <div class="w-1/2">
+                    <span class="font-bold text-2xl flex-1">{{ note.title }}</span>
+                </div>
+                <div class="flex justify-between">
+                    <a href=""><img class="w-5 h-5 mr-2" src="{% static 'icons/edit.png' %}" alt="Edit Icon"></a>
+                    <a href=""><img class="w-5 h-5" src="{% static 'icons/delete.png' %}" alt="Delete Icon"></a>
+                </div>
+            </div>
+            <div class="mt-2">
+                <span class="font-thin italic text-sm">{{ note.published_date }}</span>
+            </div>
+            <div class="bg-gray-400 w-full h-px mt-2 mb-4"></div>
+            <div>
+                <span>{{ note.description }}</span>
+            </div>
+        </div>
+        {% if forloop.counter|divisibleby:2 %} <!-- Adjusted line -->
+        <div class="w-full"></div> <!-- Adjusted line -->
+        {% endif %} <!-- Adjusted line -->
+        {% endfor %}
+    </div>
 {% endblock %}
