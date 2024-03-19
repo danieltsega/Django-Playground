@@ -1,14 +1,16 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
+from django.views.generic import ListView
 
 from .models import Note
 from .forms import NoteForm
 
 # Create your views here.
+class ListNoteView(ListView):
+    model = Note
+    template_name = "index.html"
 
-def index(request):
-    return render(request, "index.html", {})
 
 class CreateNoteView(CreateView):
     model = Note
