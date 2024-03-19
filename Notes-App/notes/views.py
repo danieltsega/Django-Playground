@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic import ListView
 
 from .models import Note
@@ -17,3 +17,14 @@ class CreateNoteView(CreateView):
     form_class = NoteForm
     template_name = "add_note.html"
     success_url = reverse_lazy('home')
+
+class DeleteNoteView(DeleteView):
+    model = Note
+    success_url = reverse_lazy('home')
+    template_name = "index.html"
+
+class UpdateNoteView(UpdateView):
+    model = Note
+    form_class = NoteForm
+    template_name = "add_note.html"
+    success_url = reverse_lazy("home")
