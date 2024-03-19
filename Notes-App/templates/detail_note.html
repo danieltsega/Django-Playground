@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex flex-col items-center bg-slate-900 py-8">
+    <div class="flex justify-between mb-6 bg-white rounded w-2/4 items-center p-4 border-none">
+        <div class="">
+            <a href="{% url 'home' %}" class="">
+                <img class="w-6 h-6" src="{% static 'icons/back.png' %}" alt="Add Icon">
+            </a>
+        </div>
+        <a href="{% url 'home' %}">
+            <div class="flex justify-between">
+                <img class="w-8 h-8 mr-2" src="{% static 'icons/logo.png' %}" alt="Logo" />
+                <span class="font-bold text-lg text-center ml-1">M Y - N O T E S</span>
+            </div>
+        </a>
+    </div>
+    <div class="w-full flex flex-wrap justify-center"> <!-- Adjusted line -->
+        <div class="flex flex-col items-start bg-white rounded border-none w-1/2 p-4 m-2 h-72"> <!-- Adjusted line -->
+            <div class="flex justify-between items-center w-full">
+                <div class="w-1/2">
+                    <span class="font-bold text-2xl flex-1">{{ object.title }}</span>
+                </div>
+                <div class="flex justify-between">
+                    <a href="{% url 'edit-note' note.pk %}"><img class="w-5 h-5 mr-2" src="{% static 'icons/edit.png' %}" alt="Edit Icon"></a>
+                    <form action="{% url 'delete-note' object.pk %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <a href="javascript:;" onclick="if (confirm('Are you sure you want to delete this note?')) { this.closest('form').submit(); } return false;">
+                            <img class="w-5 h-5" src="{% static 'icons/delete.png' %}" alt="Delete Icon">
+                        </a>
+                    </form>
+                </div>
+            </div>
+            <div class="mt-2">
+                <span class="font-thin italic text-sm">{{ object.updated_date }}</span>
+            </div>
+            <div class="bg-gray-400 w-full h-px mt-2 mb-4"></div>
+            <div>
+                <span>{{ object.description }}</span>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>
