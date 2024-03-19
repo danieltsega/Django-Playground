@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from .models import Note
 from .forms import NoteForm
@@ -28,3 +28,7 @@ class UpdateNoteView(UpdateView):
     form_class = NoteForm
     template_name = "add_note.html"
     success_url = reverse_lazy("home")
+    
+class DetailNoteView(DetailView):
+    model = Note
+    template_name = "detail_note.html"
