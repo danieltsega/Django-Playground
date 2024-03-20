@@ -400,3 +400,5 @@ FodyWeavers.xsd
 /Todo/tailwind.config.js
 /Notes-App/env
 /Notes-App/tailwind.config.js
+/Authentication/env
+/Authentication/tailwind.config.js
