@@ -1,0 +1,25 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="flex flex-col items-center bg-slate-900 py-8">
+    <div class="flex justify-between mb-6 bg-slate-300 rounded w-2/4 items-center p-4 border-none">
+        <a href="{% url 'home' %}">
+            <div class="flex justify-between items-center">
+                <img class="w-10 h-10 mr-2" src="{% static 'icons/logo.png' %}" alt="Logo" />
+                <span class="font-bold text-lg text-center ml-1">O - A U T H</span>
+            </div>
+        </a>
+        <div class="">
+            <a href="{% url 'logout'%}" class="py-2 px-4 bg-red-700 hover:bg-red-900 font-bold text-white flex justify-center rounded-lg">
+                Logout
+            </a>
+        </div>
+    </div>
+    {% block content %} {% endblock %}
+  </body>
+</html>
