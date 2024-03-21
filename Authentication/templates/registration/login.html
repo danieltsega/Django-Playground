@@ -1,5 +1,11 @@
-<form action="{% url 'login' %}" method="POST">
+{% load static %}
+
+<form method="post" class="login-form">
     {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="Login">
+    {{ form.as_p }}
+    <button type="submit">Login</button>
 </form>
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+{% endblock %}
