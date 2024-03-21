@@ -1,5 +1,29 @@
-<form action="{% url 'signup' %}" method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="SignUp">
-</form>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex flex-col items-center justify-center bg-slate-900 py-8">
+    <div class="flex flex-col justify-center items-center p-4 bg-white rounded-lg">
+        <span class="flex justify-center mb-4 font-bold text-xl">Register</span>
+        <form action="{% url 'signup' %}" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <div class="flex justify-center items-center p-4">
+                <input type="submit" value="Signup"
+                    class="bg-green-700 hover:bg-green-800 px-4 py-2 text-lg font-bold text-white rounded-md">
+            </div>
+            <div class="flex justify-start p-4">
+                <span class="font-medium">Dont have an account? <a href="{% url 'login' %}"
+                        class="font-bold text-blue-700">Log In</a> now.</span>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
