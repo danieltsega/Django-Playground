@@ -402,3 +402,5 @@ FodyWeavers.xsd
 /Notes-App/tailwind.config.js
 /Authentication/env
 /Authentication/tailwind.config.js
+/Authentication-Google/env
+/Authentication-Google/tailwind.config.js
