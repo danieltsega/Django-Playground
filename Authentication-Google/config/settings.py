@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-SITE_ID = 2
+SITE_ID = 3
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -151,5 +151,5 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend"
 )
 
-LOGIN_REDIRECT_URL = "home"
-LOGOUT_REDIRECT_URL = 'login'   
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = '/'   
