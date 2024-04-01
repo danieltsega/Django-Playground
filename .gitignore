@@ -404,3 +404,5 @@ FodyWeavers.xsd
 /Authentication/tailwind.config.js
 /Authentication-Google/env
 /Authentication-Google/tailwind.config.js
+/Keep/env
+/Keep/tailwind.config.js
