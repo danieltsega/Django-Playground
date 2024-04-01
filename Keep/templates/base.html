@@ -35,13 +35,13 @@
     <div class="h-screen w-48 fixed top-16 left-0 flex flex-col items-center">
         <ul class="py-4">
             <li>
-                <a href="#" class="flex items-center space-x-2 px-12 py-2 text-gray-700 hover:bg-gray-200 w-full hover:rounded-lg">
+                <a href="{% url 'home' %}" class="flex items-center space-x-2 px-12 py-2 text-gray-700 hover:bg-gray-200 w-full hover:rounded-lg">
                     <i class="fas fa-sticky-note mr-2"></i> <!-- Note icon -->
                     Notes
                 </a>
             </li>
             <li class="mt-4">
-                <a href="#" class="flex items-center space-x-2 px-12 py-2 text-gray-700 hover:bg-gray-200 hover:rounded-lg">
+                <a href="{% url 'todos' %}" class="flex items-center space-x-2 px-12 py-2 text-gray-700 hover:bg-gray-200 hover:rounded-lg">
                     <i class="fas fa-tasks mr-2"></i> <!-- Todo icon -->
                     Todos
                 </a>
@@ -55,5 +55,18 @@
             <!-- Your page-specific content here -->
         {% endblock %}
     </div>
+
+    <script>
+        // JavaScript to set the active page dynamically
+        const currentPage = window.location.pathname; // Get the current page path
+        const notesLink = document.querySelector('[href="{% url 'home' %}"]');
+        const todosLink = document.querySelector('[href="{% url 'todos' %}"]');
+    
+        if (currentPage === "{% url 'home' %}") {
+            notesLink.classList.add("bg-gray-200 rounded-lg");
+        } else if (currentPage === "{% url 'todos' %}") {
+            todosLink.classList.add("bg-gray-200 rounded-lg");
+        }
+    </script>
 </body>
 </html>
