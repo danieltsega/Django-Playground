@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="w-2/4 flex justify-start py-2 mb-4">
+    <span class="text-slate-600 font-bold text-lg">Add Your Note</span>
+</div>
+<form action="" method="POST" class="mb-0 flex flex-col items-start justify-between w-2/4">
+    {% csrf_token %}
+    <div class="w-full">
+        {{ form.as_p }}
+    </div>
+    <div class="flex justify-end w-full">
+        <button class="border-none bg-green-700 px-8 py-2 rounded hover:bg-green-500" type="submit"><img src="{% static 'icons/add.png' %}" alt="Add Icon" srcset=""></button>
+    </div>
+</form>
+{% endblock content %}
