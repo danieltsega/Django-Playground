@@ -46,11 +46,17 @@
                     Todos
                 </a>
             </li>
+            <li class="mt-96">
+                <a href="{% url 'account_logout' %}" class="flex items-center space-x-2 px-12 py-2 text-gray-700 hover:bg-gray-200 hover:rounded-lg">
+                    <i class="fas fa-sign-out mr-2"></i>
+                    Logout
+                </a>
+            </li>
         </ul>
     </div>
 
     <!-- Main content area -->
-    <div class="ml-48 p-4 h-screen mt-20 flex flex-col items-center">
+    <div class="ml-48 p-12 pt-24 h-screen mt-12 flex flex-col items-center bg-gray-200">
         {% block content %}
             <!-- Your page-specific content here -->
         {% endblock %}
