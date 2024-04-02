@@ -23,6 +23,11 @@ class CreateNoteView(LoginRequiredMixin, CreateView):
     template_name = 'add_note.html'
     success_url = reverse_lazy('home')
     
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+    
+    
 class DeleteNoteView(LoginRequiredMixin, DeleteView):
     model = Note
     success_url = reverse_lazy('home')
